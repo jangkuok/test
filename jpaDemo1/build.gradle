@@ -1,0 +1,63 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.10.RELEASE'
+	}
+	repositories {
+		
+		mavenCentral()
+		
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+group = 'com.javateam'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	// mavenLocal()
+	mavenCentral()
+	maven {
+			url "http://maven.jahia.org/maven2/"
+	}
+}
+
+configurations {
+	providedRuntime
+}
+
+dependencies {
+	//compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.5.13.RELEASE'
+	compile('org.springframework.boot:spring-boot-starter-web')
+	
+	// spring jdbc, h2 DB
+	compile("org.springframework.boot:spring-boot-starter-jdbc")
+	// runtime("com.h2database:h2")
+	
+	// oracle
+	compile("com.oracle:ojdbc5:11.2.0.2.0");
+	// ompile("com.oracle:ojdbc6:11.2.0");
+	
+	// tomcat(embed)/jstl
+	compile('javax.servlet:jstl')
+	providedRuntime('org.apache.tomcat.embed:tomcat-embed-jasper')
+
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	
+	
+	
+	
+	
+	
+	
+}
